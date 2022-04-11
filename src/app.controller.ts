@@ -11,15 +11,14 @@ export class AppController {
   }
 
   @Get('/hello')
-  getHello2(): string {
-    return this.appService.getHello2();
+  getHello2(    @Query('nome') nome:string, 
+  @Query('sobrenome') sobrenome:string
+  ): string {
+    return this.appService.getHello2(nome, sobrenome);
   }
 
   @Get('/bye')
-  getBye(
-    @Query('nome') nome:string, 
-    @Query('sobrenome') sobrenome:string
-    ): string {
-    return 'Tchau ' + nome + ' ' + sobrenome;
+  getBye(): string {
+    return this.appService.getBye();
   }
 }
