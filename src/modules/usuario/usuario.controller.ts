@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 
 @Controller('usuario')
@@ -6,13 +6,18 @@ export class UsuarioController {
     constructor(private readonly usuarioService: UsuarioService) {}
 
     @Get('/')
-    obterUsuario(): string{
-        return this.usuarioService.obterUsuario();
+    obterUsuario(@Query('nome') nome:string): string{
+        return this.usuarioService.obterUsuario(nome);
+    }
+
+    @Get('/listar')
+    listarUsuario(): string[]{
+        return this.usuarioService.listarUsuario();
     }
 
     @Get('/cadastrar')
-    cadastrarUsuario(): string{
-        return 'Falta implementar e não será um Get'
+    cadastrarUsuario(@Query('nome') nome:string): string{
+        return this.usuarioService.cadastrarUsuario(nome);
     }
 
 
