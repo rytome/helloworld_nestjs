@@ -1,4 +1,5 @@
 import { Controller, Get, Query } from '@nestjs/common';
+import { Usuario } from './usuario';
 import { UsuarioService } from './usuario.service';
 
 @Controller('usuario')
@@ -11,13 +12,13 @@ export class UsuarioController {
     }
 
     @Get('/listar')
-    listarUsuario(): string[]{
+    listarUsuario(): Usuario[]{
         return this.usuarioService.listarUsuario();
     }
 
     @Get('/cadastrar')
-    cadastrarUsuario(@Query('nome') nome:string): string{
-        return this.usuarioService.cadastrarUsuario(nome);
+    cadastrarUsuario(@Query() usuario: Usuario): string{
+        return this.usuarioService.cadastrarUsuario(usuario);
     }
 
 

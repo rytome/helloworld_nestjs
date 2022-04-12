@@ -1,24 +1,27 @@
 import { Injectable } from '@nestjs/common';
+import { Usuario } from './usuario';
 
 @Injectable()
 export class UsuarioService {
 
-    dados: string[];
+    dados: Usuario[];
     
     constructor(){
-        this.dados = ['Alex', 'Tiago'];
+        this.dados = [];
+        this.dados.push(new Usuario('Alex', '123456789'));
+        this.dados.push(new Usuario('Tiago', '333333333'));
     }
 
     obterUsuario(nome: string):string{
         return `Obtendo dados de ${nome} xxx`
     }
 
-    listarUsuario():string[]{
+    listarUsuario():Usuario[]{
         return this.dados;
     }
 
-    cadastrarUsuario(nome: string):string{
-        this.dados.push(nome);
-        return `Usuário ${nome} cadastrado com sucesso`
+    cadastrarUsuario(usuario: Usuario):string{
+        this.dados.push(usuario);
+        return `Usuário ${usuario.nome} cadastrado com sucesso`
     }
 }
